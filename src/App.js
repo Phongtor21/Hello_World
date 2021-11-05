@@ -1,10 +1,28 @@
 import './App.css';
-import { Hello } from './components/Hello';
+import './css/Todo.css';
+import Todolist from './components/TodoList';
+import { useState } from 'react';
+import AddTodo from './components/AddTodo';
 
 function App() {
+  const [todoList, setTodoList] = useState([]);
+  const [todoEditingId, gettodoEditingId] = useState("");
+
+  const addTodo = (todo = {}) => {
+    setTodoList([todo, ...todoList])
+  }
+
+  const EditId = (id = '') => {
+    gettodoEditingId( {todoEditingId: id })
+  }
+
+  console.log(todoList)
+  
   return (
     <div className="App">
-      <Hello/>
+      <AddTodo addTodo={addTodo}/>
+      
+      <Todolist todosList={todoList}/>
     </div>
   );
 }
